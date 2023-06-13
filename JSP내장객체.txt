@@ -1,0 +1,27 @@
+jsp - 액션태그 <jsp:useBean>
+내장 객체: out, request, response
+
+응답받을때 한글
+request.setCharacterEncoding("utf-8");//한글인코딩
+응답할때 한글
+response.setCharacterEncoding("utf-8");
+
+reponse 페이지 이동
+response.sendRedirect("loginSuccess.jsp");
+
+컨텐츠유형
+response.setContentType("text/html; charset=utf-8")
+
+서블릿(servlet) -> jsp
+데이터를 이어주는 컨테이너 같은역할
+MVC패턴에 주로 이용됨
+
+서블릿 생성 방식
+1. 어노테이션 방식(@)
+2. web.xml(환경 설정파일)
+
+jsp(폼) -> servlet - > 브라우저
+
+
+
+

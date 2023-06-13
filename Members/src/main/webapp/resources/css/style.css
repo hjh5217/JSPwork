@@ -1,0 +1,113 @@
+@charset "utf-8";
+/* 공통 스타일 */
+*{margin: 0;padding: 0;}
+#container{width: 90%;margin: 0 auto;}
+a{text-decoration: none;}
+ul li{list-style: none;}
+
+/* index 스타일 */
+h2{text-align: center;}
+#main{margin: 20px auto; text-align: center;}
+.main_img{margin: 0 20px;}
+.main_img img{border-radius: 10px;}
+
+/* header 스타일 */
+header{height: 100px;background: #0077cc;}
+#logo{float:  left; width: 20%; height: 100px; line-height: 100px;
+			text-align: left;}
+#logo h1 a{color: #eee;padding-left: 15px;font-size: 1.3em;
+	font-size: italic;}
+nav{float: right; width:70%;height: 100px;}
+
+/* 주메뉴(헤더꺼) */
+#topmenu{height: 100px; line-height: 100px;}
+#topmenu li{float: left;margin: 0 20px;}
+#topmenu li a{display: block;padding: 0 20px;color: #eee;}
+#topmenu li a:hover{color: #444;}
+
+/* footer 스타일 */
+footer{height: 80px; border-top: 2px solid #222;}
+#bottomMenu{margin: 10px 10px 10px 20px;}
+#bottomMenu li{display: inline-block; margin: 10px 0; padding: 0 10px;
+border-right: 1px solid #ccc;}
+#bottomMenu li a{color: #444; font-size: 0.9em;}
+#bottomMenu li:last-child{border:none;}
+
+
+/* memberList 스타일 */
+#memberlist{width: 550px; margin: 40px auto;}
+#memberlist .logout{text-align: right; margin-right: 5%;;}
+#memberlist table{width: 550px; margin: 15px auto 100px;}
+#memberlist table th{background: #eee;}
+#memberlist table, th, td{border: 1px solid #ccc;
+	border-collapse: collapse; text-align: center;
+	padding: 10px; font-size: 0.9em;}
+#memberlist table, th, td:last-child(){padding: 0;}
+
+
+
+/* register 회원가입 */
+#register{width: 400px; margin: 30px auto 100px;}
+#register form{margin: 30px auto;}
+#register form fieldset {padding-bottom: 20px;}
+#register form ul li{margin: 30px 20px;}
+#register form label{width: 120px; float: left; padding-left: 10px;
+margin-right: 10px;}
+#register form input[type='text']{width: 210px; height: 25px;}
+#register form input[type='password']{width: 210px; height: 25px;}
+#register form li label.radio{width: 80px;}
+#register form .button{width: 400px; height: 50px; display: inline-block; text-align: center;}
+#register form input[type='submit']{width: 80px; height: 30px; margin-top: 30px;}
+#register form input[type='reset']{width: 80px; height: 30px; margin-top: 30px;}
+
+
+/* detaile 회원 상세보기 */
+#detaile{width: 400px; margin: 30px auto;}
+table #detaile{border: 1px solid #ccc;
+	border-collapse: collapse; text-align: center;
+	padding: 10px; font-size: 0.9em;}
+#detaile input{padding: 5px 20px;}
+
+/* 로그인 스타일 */
+#login{width:400px; margin: 30px auto 100px;}
+#login form{margin: 30px auto;}
+#login .error{color: #f00; margin-bottom: 10px;}
+#login form ul li{margin: 30px;}
+#login form ul li:nth-of-type(3){text-align:center; margin-left: 0px;}
+#login form label{width:100px; float: left; padding-left:10px;}
+#login form .button{width:400px; height: 50px; text-align: center;}
+#login form input[type='text'], input[type='password']{width:200px; height: 30px;}
+#login form input[type='submit']{padding: 10px 15px; margin-top: 10px;}
+
+
+/* boardList 스타일 */
+#boardlist{width:550px; margin: 40px auto 100px;}
+#boardlist table{width: 550px; margin: 30px auto;}
+#boardlist table, th, td{border: 1px solid #ccc; border-collapse: collapse; text-align: center;}
+#boardlist table th, td{padding: 10px 0; font-size: 0.9em;};
+#boardlist table thead{background: #eee;}
+#boardlist table td:nth-of-type(2){text-align: left; padding-left: 10px;}
+#boardlist .btnWrite{text-align: right; margin-right: 20px;}
+#boardlist button{padding: 10px;}
+
+
+/* board_reg 스타일 */
+#board_reg{width: 550px; margin: 40px auto 100px;}
+#board_reg table{width: 550px; margin: 30px auto;}
+#board_reg table, td{border: 1px solid #ccc; border-collapse: collapse;}
+#board_reg table input[type='text']{width: 520px; height: 25px; padding: 5px;}
+#board_reg table textarea{width: 520px; height: 350px; resize: none; padding: 5px; 
+	line-height: 1.5; font-family: "맑은고딕";}
+#board_reg table tr:nth-of-type(3){text-align: left; padding-left: 10px;}
+#board_reg table input[type='submit'],input[type='reset']{width: 100px; height: 30px;}
+
+/* board_detail 스타일 */
+
+#board_detail{width: 550px; margin: 40px auto 100px;}
+#board_detail table{width: 550px; margin: 30px auto; border-collapse:collapse;}
+
+#board_detail table input[type='text']{width:520px; height:25px; padding: 5px;}
+#board_detail table textarea{width: 520px; height: 350px; resize: none; padding: 5px;
+	line-height: 1.5; font-family: '맑은고딕';}
+#board_detail table tr:nth-of-type(3) td{text-align: left; padding-left: 10px;}
+#board_detail table button{width: 80px; height: 30px;}

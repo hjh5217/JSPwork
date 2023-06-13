@@ -1,0 +1,73 @@
+================================================
+JSP 태그 3종
+스크립트 - HTML코드에 자바를 넣어 프로그램을 수행
+ex)
+ <html>
+....
+<%
+	// 자바영역
+%>
+
+※ 참고 <%! %> : 자바변수나 메소드 정의사용 전역변수됨 주로 헤드 바디 사이에 작성
+<% %> 자바코드 작성시 사용
+<%= %> 호출 출력
+...
+</html> 
+디렉티브 - 현재 jsp 페이지에 대한 정보를 설정
+ex) jsp 파일을 처음 만들면 맨위에 <@ page content...@> 등의 정보를 볼수있다 
+<% page%>
+<% include %> jsp 페이지에 다른페이지 포함
+<% taglib %> jsp 내의 사용할 태그 라이브러리 설정
+
+액션태그 - 클라이언트/서버에 어떤 작동을 행하도록 명령을 지시하는 태그
+<jsp: 형태로 되어있다>
+forward 페이지 이동
+redirect -> 주소도 완전 바껴서 출력
+dispatch -> second 페이지의 내용이 출력 - 주소는 first로 유지됨
+
+setProperty/getProperty  는 set과 get 같은느낌
+includ 외부 페이지 이동
+param includ나 forward 안에 값을 보낼 수 있음 그렇기에 자식으로 밖에 이용안됨
+
+주석<%-- .. --%>
+================================================
+sendRedirect()
+location.href="header.jsp"
+
+- request, response, forward
+
+※jsp:useBean
+<jsp:useBean id="clac" class="beans.CalcBean"></jsp:useBean>
+CalcBean calc = new CalcBean ()랑 같은행위
+id를 참조변수로 class가 사용할 class를 쓰는듯
+
+※  jsp:setProperty
+<jsp:useBean id="member" class="beans.MemberBean"/>
+<!-- name이 객체 이름과 같음(id=""를  setProperty에서 name=""안으로 옮기라는말  -->
+<jsp:setProperty property="id" name="member"/>
+<jsp:setProperty property="name" name="member"/>
+	
+<p>아이디: <jsp:getProperty property="id" name="member"/>  </p>
+<p>이름:  <jsp:getProperty property="name" name="member"/> </p>
+
+※jsp구현방법※
+1.jsp액션태그
+2.지시자태그 new사용(import)
+
+
+=====================
+
+파일입출력복습
+
+Bean = VO+DAO
+DAO = CRUD
+DTO =  getter/setter 메서드만 가진 클래스 의미
+VO = 클래스(자료형) 
+
+======오늘 공부할 목록==========
+jsp:useBean scope="application"
+
+DAO scope=""
+requset - 어떤 페이지에서 다음 페이지 저장
+session - 세션이 발급된 영역
+application - 전체 프로그램 영역에서 저장
