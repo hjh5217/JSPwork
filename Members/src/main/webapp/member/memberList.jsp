@@ -52,9 +52,12 @@
 					</c:forEach>
 				</tbody>
 			</table>
-			<%-- <c:forEach items="${memberList}" var="member">
-				<p>아이디<c:out value="${member.memberId}" /></p>
-			</c:forEach> --%>
+			<h2>이벤트 추첨 링크</h2>
+			<div id="eventlink">
+				<a href="/member/event.jsp" id="eventlink"> 
+				<img src="/resources/images/123.png" alt="브롱스" />
+				</a>
+			</div>
 		</section>
 	</div>
 	<jsp:include page="../footer.jsp"></jsp:include>

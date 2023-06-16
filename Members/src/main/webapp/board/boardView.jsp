@@ -19,41 +19,45 @@
 	<jsp:include page="../hearder.jsp" />
 	<div id="container">
 		<section id="board_detail">
-			<h2>게시글 상세 보기</h2>	
-				<table>
-					<tbody>
-						<tr>
-							<td>
-								<input type="text" name="title" value="${board.title}"/>
-							</td>
-						</tr>
-						<tr>
-							<td>
-							<textarea rows="8" cols="100">${board.content}</textarea>
-							</td>
-						</tr>
-						<tr>
-							<td>
-								<c:out value="글쓴이 : ${board.memberId}"/>
-								<br>
-								작성일 : <fmt:formatDate value="${board.regDate}" pattern="yyyy-MM-dd hh:mm:ss"/> 
-							</td>
-						</tr>
-						<tr>
-							<td>
-								<c:if test="${sessionId == board.memberId}">
+			<h2>게시글 상세 보기</h2>
+			<table>
+				<tbody>
+					<tr>
+						<td><input type="text" name="title" value="${board.title}" />
+						</td>
+					</tr>
+					<tr>
+						<td><textarea rows="8" cols="100">${board.content}</textarea>
+						</td>
+					</tr>
+					<tr>
+						<c:if test="${empty board.modifyDate}">
+							<td><c:out value="글쓴이 : ${board.memberId}" /> <br> 작성일
+								: <fmt:formatDate value="${board.regDate}"
+									pattern="yyyy-MM-dd hh:mm:ss" /></td>
+						</c:if>
+						<c:if test="${not empty board.modifyDate}">
+							<td><c:out value="글쓴이 : ${board.memberId}" /> <br> 작성일
+								: <fmt:formatDate value="${board.regDate}"
+									pattern="yyyy-MM-dd hh:mm:ss" /> <br> 수정일 : <fmt:formatDate
+									value="${board.modifyDate}" pattern="yyyy-MM-dd hh:mm:ss" /></td>
+						</c:if>
+					</tr>
+					<tr>
+						<td><c:if test="${sessionId == board.memberId}">
+								<a href="/updateBoard.do?bnum=${board.bnum}">
 									<button type="button">수정</button>
-									<a href="/deleteBoard.do?bnum=${board.bnum}" onclick="return confirm('정말로 삭제하시겠습니까?')">
-									<button type="button">삭제</button>
-									</a>
-								</c:if>
-								<a href="/boardList.do">
-								<button type="button">목록</button>
 								</a>
-							</td>
-						</tr>
-					</tbody>
-				</table>
+								<a href="/deleteBoard.do?bnum=${board.bnum}"
+									onclick="return confirm('정말로 삭제하시겠습니까?')">
+									<button type="button">삭제</button>
+								</a>
+							</c:if> <a href="/boardList.do">
+								<button type="button">목록</button>
+						</a></td>
+					</tr>
+				</tbody>
+			</table>
 		</section>
 	</div>
 	<jsp:include page="../footer.jsp"></jsp:include>

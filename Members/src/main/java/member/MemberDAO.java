@@ -123,4 +123,25 @@ public class MemberDAO {
 			JDBCUtil.close(conn, psmt);
 		}
 	}
+	
+	public boolean duplicatedID(String memberId) {
+		boolean result = false;
+		conn=JDBCUtil.getConnection();
+		String sql = "SELECT DECODE(COUNT(*), 1, 'true','false') as result"
+				+ " FROM t_member WHERE memberid = ?";
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, memberId);
+			rs = psmt.executeQuery();
+			if(rs.next()) {
+				result = rs.getBoolean("result");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCUtil.close(conn, psmt, rs);
+		}
+		
+		return result;			
+	}
 }
