@@ -13,7 +13,7 @@
 <jsp:include page="../hearder.jsp" />
 	<div id="container">
 		<section id="boardlist">
-			<h2>회원 목록입니다.</h2>
+			<h2>글 목록입니다.</h2>
 			<table id="tbl_list">
 				<thead>
 					<tr>
@@ -43,6 +43,34 @@
 					</c:forEach>
 				</tbody>
 			</table>
+			<!-- 페이지 처리 영역 -->
+			<div class="pagination">
+			<!-- 이전 페이지 -->
+			<c:if test="${startPage>1}">
+			<a href="/boardList.do?pageNum=${startPage-1}">이전</a>
+			</c:if>
+			<c:if test="${startPage<=1}">
+			<a href="">이전</a>
+			</c:if>
+			
+			<!-- 페이지 목록 -->
+			<c:forEach var="i" begin="1" end="${endPage}">
+				<c:if test="${currentPage == i}">
+					<a href="/boardList.do?pageNum=${i}"><span class="page">${i}</span></a>
+				</c:if>
+				<c:if test="${currentPage != i}">
+					<a href="/boardList.do?pageNum=${i}">${i}</a>
+				</c:if>
+			</c:forEach>
+			
+			<!-- 다음 페이지 -->
+			<c:if test="${endPage>startPage}">
+			<a href="/boardList.do?pageNum=${startPage+1}">다음</a>
+			</c:if>
+			<c:if test="${endPage<=startPage}">
+			<a href="">다음</a>
+			</c:if>
+			</div>
 			<div class="btnWrite">
 				<a href="/boardForm.do">
 					<button type="button">글쓰기</button>

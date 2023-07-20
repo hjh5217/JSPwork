@@ -8,29 +8,6 @@
 <link rel="stylesheet" type="text/css" href="../resources/css/style.css">
 <script src="../resources/js/validation.js"></script>
 <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
-<script type="text/javascript">
-	function checkId(){
-		//alert("하이");
-		let memberId = $('#memberId').val();
-		$.ajax({
-			type:"post",
-			url:"http://localhost:8080/checkid",
-			dataType:"text",
-			data:{id:memberId},
-			success: function(data){
-				if($.trim(data) == "useable"){
-					$("#check").text("사용가능한 ID 입니다.")
-					
-				}else{
-					$("#check").text("이미 존재하는 ID 입니다.")
-				}
-			},
-			error: function(){
-				alert("다시해");
-			}
-		});
-	}
-</script>
 </head>
 <body>
 	<div id="container">
@@ -43,7 +20,7 @@
 						<li><label for="memberId">아이디 </label> <input type="text"
 							id="memberId" name="memberId"
 							placeholder="아이디는 4~15자까지 입력 가능합니다.">
-							<button class="checkbutton" type="button" onclick="checkId()">ID 중복</button>
+							<button class="checkbutton" type="button" id="btnCheck" value="N" onclick="checkId()">ID 중복</button>
 							<p id="check"></p>
 							</li>
 

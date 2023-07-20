@@ -161,7 +161,7 @@
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
 	  
       
-      <Context docBase="C:/green_project/JSPworks/Jspwork/src/main/webapp/upload" path="/Jspwork/upload"/><Context docBase="Members" path="/" reloadable="true" source="org.eclipse.jst.jee.server:Members"/></Host>
+      <Context docBase="C:/green_project/JSPworks/Jspwork/src/main/webapp/upload" path="/Jspwork/upload"/><Context docBase="Market" path="/" reloadable="true" source="org.eclipse.jst.jee.server:Market"/></Host>
     </Engine>
   </Service>
 </Server>

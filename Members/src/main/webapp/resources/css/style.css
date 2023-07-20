@@ -92,6 +92,9 @@ table #detaile{border: 1px solid #ccc;
 #boardlist table td:nth-of-type(2){text-align: left; padding-left: 10px;}
 #boardlist .btnWrite{text-align: right; margin-right: 20px;}
 #boardlist button{padding: 10px;}
+#boardlist .pagination{text-align: center;}
+#boardlist .pagination a{margin: 5px;}
+#boardlist .pagination a .page{}
 
 
 /* board_reg 스타일 */

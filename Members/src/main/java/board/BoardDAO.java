@@ -8,6 +8,8 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 
+import org.apache.tomcat.dbcp.dbcp2.PStmtKey;
+
 import common.JDBCUtil;
 
 public class BoardDAO {
@@ -17,12 +19,18 @@ public class BoardDAO {
 	private ResultSet rs = null;
 		
 	//게시글 목록
-	public ArrayList<Board> getBoardList(){
+	public ArrayList<Board> getBoardList(int page){
 		ArrayList<Board> boardList = new ArrayList<>();	
+		int pageSize = 10;
 		conn=JDBCUtil.getConnection();
-		String sql = "SELECT * FROM t_board ORDER BY regdate DESC";
+		String sql = "SELECT * "
+				+ "FROM (SELECT ROWNUM rn, board.* "
+				+ "            FROM(SELECT * FROM t_board ORDER BY bnum DESC) board) "
+				+ "WHERE rn >= ? AND RN <= ?";
 		try {
 			psmt = conn.prepareStatement(sql);
+			psmt.setInt(1, (page-1)*pageSize + 1); // 시작행
+			psmt.setInt(2, pageSize*page); // 페이지당 총 행수
 			rs = psmt.executeQuery();
 			while(rs.next()) {
 				Board board = new Board();
@@ -39,7 +47,7 @@ public class BoardDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			JDBCUtil.close(conn, psmt);
+			JDBCUtil.close(conn, psmt, rs);
 		}
 		
 		return boardList;
@@ -63,6 +71,24 @@ public class BoardDAO {
 		} finally {
 			JDBCUtil.close(conn, psmt);
 		}
+	}
+	
+	//게시글 총 개수
+	public int getBoardCount() {
+		int total = 0;
+		conn = JDBCUtil.getConnection();
+		String sql = "SELECT COUNT(*) AS total FROM t_board";
+		try {
+			psmt = conn.prepareStatement(sql);
+			rs = psmt.executeQuery();
+			if(rs.next())
+				total = rs.getInt("total");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCUtil.close(conn, psmt, rs);
+		}
+		return total;
 	}
 	
 	public Board getBoard(int bnum) {
