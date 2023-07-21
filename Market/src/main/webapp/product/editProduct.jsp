@@ -21,16 +21,16 @@
 				<p>${product.description}</p>
 				<p>${product.unitPrice}원</p>
 				<p>
-					<!-- edit - update는 수정 -->
+					<!-- edit이 update면 수정 버튼 -->
 					<c:if test="${edit eq 'update'}">
-						<a href="/updateProductForm.do?ProductId=${product.productId}"
-							class="btn btn-success">수정 &raquo;</a>
+						<a href="/updateProductForm.do?productId=${product.productId}"
+						   class="btn btn-success">수정 &raquo;</a>
 					</c:if>
-					
-					<!-- edit - delete는 삭제 -->
+					<!-- edit이 delete면 삭제 버튼 -->
 					<c:if test="${edit eq 'delete'}">
-						<a href="/deleteProduct.do?ProductId=${product.productId}"
-							class="btn btn-danger">삭제 &raquo;</a>
+						<a href="/deleteProduct.do?productId=${product.productId}&edit=${edit}"
+						   class="btn btn-danger"
+						   onclick="return confirm('정말로 삭제하시겠습니까?')">삭제 &raquo;</a>
 					</c:if>
 				</p>
 			</div>

@@ -12,7 +12,7 @@ public class Product implements Serializable{
 	private String description;		//상품설명
 	private String manufacture;		//제조사
 	private String category;		//분류
-	private Long unitsInstock;		//재고수
+	private Long unitsInStock;		//재고수
 	private String condition;		//신상품or중고품
 	private String productImage;	//상품 이미지
 	private int quantity;
@@ -53,11 +53,11 @@ public class Product implements Serializable{
 	public void setCategory(String category) {
 		this.category = category;
 	}
-	public Long getUnitsInstock() {
-		return unitsInstock;
+	public Long getUnitsInStock() {
+		return unitsInStock;
 	}
-	public void setUnitsInstock(Long unitsInstock) {
-		this.unitsInstock = unitsInstock;
+	public void setUnitsInStock(Long unitsInStock) {
+		this.unitsInStock = unitsInStock;
 	}
 	public String getCondition() {
 		return condition;

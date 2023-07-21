@@ -29,7 +29,7 @@ public class ProductDAO {
 				product.setDescription(rs.getString("p_description"));
 				product.setCategory(rs.getString("p_category"));
 				product.setManufacture(rs.getString("p_manufacture"));
-				product.setUnitsInstock(rs.getLong("p_unitsInStock"));
+				product.setUnitsInStock(rs.getLong("p_unitsInStock"));
 				product.setCondition(rs.getString("p_condition"));
 				product.setProductImage(rs.getString("p_productImage"));
 				
@@ -58,7 +58,7 @@ public class ProductDAO {
 				product.setDescription(rs.getString("p_description"));
 				product.setCategory(rs.getString("p_category"));
 				product.setManufacture(rs.getString("p_manufacture"));
-				product.setUnitsInstock(rs.getLong("p_unitsInStock"));
+				product.setUnitsInStock(rs.getLong("p_unitsInStock"));
 				product.setCondition(rs.getString("p_condition"));
 				product.setProductImage(rs.getString("p_productImage"));
 			}
@@ -82,7 +82,7 @@ public class ProductDAO {
 			pstmt.setString(4, product.getDescription());
 			pstmt.setString(5, product.getCategory());
 			pstmt.setString(6, product.getManufacture());
-			pstmt.setLong(7, product.getUnitsInstock());
+			pstmt.setLong(7, product.getUnitsInStock());
 			pstmt.setString(8, product.getCondition());
 			pstmt.setString(9, product.getProductImage());
 			pstmt.executeUpdate();
@@ -92,6 +92,55 @@ public class ProductDAO {
 			JDBCUtil.close(conn, pstmt, rs);
 		}
 	}
+	
+	//상품 수정
+		public void updateProduct(Product product) {
+			conn = JDBCUtil.getConnection();
+			String sql = "UPDATE product SET p_name=?, p_unitPrice=?, p_description=?, "
+					+ "p_category=?, p_manufacture=?, p_unitsInStock=?, p_condition=?, "
+					+ "p_productImage=? WHERE p_id=?";
+			try {
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, product.getPname());
+				pstmt.setInt(2, product.getUnitPrice());
+				pstmt.setString(3, product.getDescription());
+				pstmt.setString(4, product.getCategory());
+				pstmt.setString(5, product.getManufacture());
+				pstmt.setLong(6, product.getUnitsInStock());
+				pstmt.setString(7, product.getCondition());
+				pstmt.setString(8, product.getProductImage());
+				pstmt.setString(9, product.getProductId());
+				pstmt.executeUpdate();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				JDBCUtil.close(conn, pstmt);
+			}
+		}
+		
+		//상품 수정
+		public void updateProductNoImage(Product product) {
+			conn = JDBCUtil.getConnection();
+			String sql = "UPDATE product SET p_name=?, p_unitPrice=?, p_description=?, "
+					+ "p_category=?, p_manufacture=?, p_unitsInStock=?, p_condition=? "
+					+ "WHERE p_id=?";
+			try {
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, product.getPname());
+				pstmt.setInt(2, product.getUnitPrice());
+				pstmt.setString(3, product.getDescription());
+				pstmt.setString(4, product.getCategory());
+				pstmt.setString(5, product.getManufacture());
+				pstmt.setLong(6, product.getUnitsInStock());
+				pstmt.setString(7, product.getCondition());
+				pstmt.setString(8, product.getProductId());
+				pstmt.executeUpdate();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				JDBCUtil.close(conn, pstmt);
+			}
+		}
 	
 	public void deleteProduct(String productId) {
 		conn = JDBCUtil.getConnection();
