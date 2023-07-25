@@ -27,4 +27,15 @@
          <form-error-page>/security/loginFailed.jsp</form-error-page>   
       </form-login-config>
    </login-config>
+   
+   <!-- 404(페이지없음), 500(코드오류) -->
+   <error-page>
+   		<error-code>500</error-code>
+   		<location>/error/errorPage.jsp</location>
+   </error-page>
+   <error-page>
+   		<error-code>404</error-code>
+   		<location>/error/errorPage.jsp</location>
+   </error-page>
+   
 </web-app>

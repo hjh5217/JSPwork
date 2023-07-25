@@ -21,6 +21,8 @@ import javax.servlet.http.HttpSession;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
+import member.Member;
+import member.MemberDAO;
 import product.Product;
 import product.ProductDAO;
 
@@ -29,9 +31,11 @@ public class ProductController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	private ProductDAO productDAO;
+	private MemberDAO memberDAO;
    
 	public void init(ServletConfig config) throws ServletException {
 		productDAO = new ProductDAO();
+		memberDAO = new MemberDAO();
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -390,7 +394,78 @@ public class ProductController extends HttpServlet {
 				nextPage = "/editProduct.do?edit=update";
 			}
 			
-			
+			if(command.equals("/memberList.do")) {
+				List<Member> memberList = memberDAO.getMemberList();
+				request.setAttribute("memberList", memberList);
+				nextPage = "/member/memberList.jsp";
+			}else if(command.equals("/memberInfo.do")) {
+				String mid = request.getParameter("mid");
+				Member member = memberDAO.getMember(mid);
+				request.setAttribute("member", member);
+				
+				nextPage = "/member/memberInfo.jsp";
+			}else if(command.equals("/memberForm.do")) {
+				nextPage = "/member/memberForm.jsp";
+			}else if(command.equals("/addMember.do")) {
+				String mid = request.getParameter("mid");
+				String passwd = request.getParameter("passwd1");
+				String mname = request.getParameter("mname");
+				String gender = request.getParameter("gender");
+				
+				String birthyy = request.getParameter("birthyy");
+				String birthmm = request.getParameterValues("birthmm")[0];
+				String birthdd = request.getParameter("birthdd");
+				String birth = birthyy+"/"+birthmm+"/"+birthdd;
+				
+				String email1 = request.getParameter("email");
+				String email2 = request.getParameter("email");
+				String email = email1 + "@" + email2;
+				
+				String phone = request.getParameter("phone");
+				String address = request.getParameter("address");
+				
+				Member newMember = new Member();
+				newMember.setMid(mid);
+				newMember.setPasswd(passwd);
+				newMember.setMname(mname);
+				newMember.setGender(gender);
+				newMember.setBirth(birth);
+				newMember.setEmail(email);
+				newMember.setPhone(phone);
+				newMember.setAddress(address);
+				
+				//dao의 addmember 호출
+				memberDAO.addMember(newMember);
+				
+				nextPage = "/index.jsp";
+			}else if(command.equals("/loginForm.do")) { //로그인 페이지 요청
+				nextPage = "/member/loginForm.jsp";
+			}else if(command.equals("/processLogin.do")) { //로그인 처리
+				String mid = request.getParameter("mid");
+				String passwd = request.getParameter("passwd");
+				
+				Member member = new Member();
+				member.setMid(mid);
+				member.setPasswd(passwd);
+				
+				boolean result = memberDAO.checkLogin(member);
+				if(result) {
+					session.setAttribute("sessionId", mid);
+					nextPage = "index.jsp";
+				}else {
+					String error = "아이디나 비밀번호를 확인해 주세요";
+					request.setAttribute("error", error);
+					nextPage = "/loginForm.do";
+				}
+			}else if(command.equals("/logout.do")) { //로그아웃
+				session.invalidate();
+				nextPage = "index.jsp";
+			}else if(command.equals("/memberInfo.do")) {  //나의 정보
+				String mid = request.getParameter("mid");
+				Member member = memberDAO.getMember(mid);
+				request.setAttribute("member", member);
+				nextPage = "/member/memberInfo.jsp";
+			}
 		
 		
 			

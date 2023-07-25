@@ -4,14 +4,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title></title>
+<title>Insert title here</title>
 </head>
 <body>
-<div class="container my-3">
-	<h3>로그인</h3>
-	<form action="j_security_check" method="post">
-		
-	</form>
-</div>
+	<h2>주소록 메인</h2>
+	<h3><a href="address/addrForm.jsp">주소록 작성</a></h3>
 </body>
 </html>
